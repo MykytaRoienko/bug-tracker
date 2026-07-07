@@ -110,9 +110,6 @@ describe("CommentSection", () => {
   });
 
   it("should display the correct timestamp for each comment", () => {
-    jest.useFakeTimers();
-    jest.setSystemTime(new Date("2023-06-10T11:00:00.000Z"));
-
     render(
       <CommentSection
         bugId={1}
@@ -121,8 +118,13 @@ describe("CommentSection", () => {
       />
     );
 
-    expect(screen.getByText(/6\/10\/23.*(10|11):00:00/)).toBeInTheDocument();
+    const expectedTimestamp = new Date(
+      mockComments[0].createdAt
+    ).toLocaleString("en-US", {
+      dateStyle: "short",
+      timeStyle: "medium",
+    });
 
-    jest.useRealTimers();
+    expect(screen.getByText(expectedTimestamp)).toBeInTheDocument();
   });
 });

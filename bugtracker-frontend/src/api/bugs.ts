@@ -6,19 +6,7 @@ const API_PATH = "/api";
 export const getBugs = async (): Promise<Bug[]> => {
   try {
     const url = `${API_BASE_URL}${API_PATH}/bugs`;
-    console.log("API call details:", {
-      url,
-      API_BASE_URL,
-      API_PATH,
-      fullUrl: url,
-    });
-
     const response = await fetch(url);
-    console.log("API Response:", {
-      status: response.status,
-      ok: response.ok,
-      statusText: response.statusText,
-    });
 
     if (!response.ok) {
       throw new Error("Failed to fetch bugs");
