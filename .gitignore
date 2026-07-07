@@ -12,6 +12,8 @@ tests-perf/test-results/*
 tests-perf/perf-results.html
 bugtracker-backend/report.xml
 bugtracker-backend/coverage*
+**/.cache/go-build/
+**/.cache/go-mod/
 bugtracker-frontend/full_output.txt
 
 # Dependencies

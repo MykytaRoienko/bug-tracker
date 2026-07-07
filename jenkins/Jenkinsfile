@@ -11,7 +11,7 @@ pipeline {
             }
             steps {
                 dir('bugtracker-backend') {
-                     sh '''
+                    sh '''
                         mkdir -p .cache/go-build .cache/go-mod
                         GOCACHE="$PWD/.cache/go-build" \
                         GOMODCACHE="$PWD/.cache/go-mod" \
@@ -21,20 +21,21 @@ pipeline {
             }
         }
 
-        stage('Unt Tests - Frontend')
+        stage('Unit Tests - Frontend') {
             agent {
                 docker {
                     image 'node:20-alpine'
                     reuseNode true
                 }
             }
-            steps (
+            steps {
                 dir('bugtracker-frontend') {
                     sh '''
                         npm ci
                         npm test
-                        '''
+                    '''
                 }
-            )
+            }
+        }
     }
 }
